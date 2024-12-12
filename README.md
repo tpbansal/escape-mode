@@ -1,4 +1,7 @@
-### **Game Concept: "Let's Get Out"**
+## Play 
+- https://tpbansal.github.io/escape-mode/
+
+### **Game Concept: "Escape Mode"**
 - **Overview**: Players control a pixel character navigating through a series of procedurally generated mazes, avoiding obstacles and collecting items under a time limit.
 - **Objective**: Reach the exit before time runs out while collecting as many coins or treasures as possible.
 - **Audience**: Casual gamers, puzzle enthusiasts, and anyone with a few minutes to spare.
