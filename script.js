@@ -1,4 +1,3 @@
-
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = 400;
@@ -44,7 +43,7 @@ function updateGame() {
     drawPlayer();
 }
 
-// Handle player movement
+// Handle player movement with keyboard
 window.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowUp":
@@ -62,6 +61,43 @@ window.addEventListener("keydown", (e) => {
     }
     checkWin();
 });
+
+// Handle player movement with touch (mobile/tablet support)
+let touchStartX = 0;
+let touchStartY = 0;
+
+canvas.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, false);
+
+canvas.addEventListener("touchend", (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    // Determine swipe direction (up, down, left, right)
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Swiping Up
+    if (Math.abs(diffY) > Math.abs(diffX) && diffY < 0 && player.y > 0) {
+        player.y -= gridSize;
+    }
+    // Swiping Down
+    else if (Math.abs(diffY) > Math.abs(diffX) && diffY > 0 && player.y < canvas.height - gridSize) {
+        player.y += gridSize;
+    }
+    // Swiping Left
+    else if (Math.abs(diffX) > Math.abs(diffY) && diffX < 0 && player.x > 0) {
+        player.x -= gridSize;
+    }
+    // Swiping Right
+    else if (Math.abs(diffX) > Math.abs(diffY) && diffX > 0 && player.x < canvas.width - gridSize) {
+        player.x += gridSize;
+    }
+    
+    checkWin();
+}, false);
 
 // Check if the player reached the goal
 function checkWin() {
