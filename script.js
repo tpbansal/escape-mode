@@ -14,6 +14,10 @@ let goal = { x: canvas.width - gridSize, y: canvas.height - gridSize };
 let timeLeft = 30;
 let score = 0;
 
+// Variables for touch input
+let touchStartX = 0;
+let touchStartY = 0;
+
 // Generate maze (simple grid for now)
 function drawMaze() {
     ctx.fillStyle = "#444";
@@ -63,9 +67,6 @@ window.addEventListener("keydown", (e) => {
 });
 
 // Handle player movement with touch (mobile/tablet support)
-let touchStartX = 0;
-let touchStartY = 0;
-
 canvas.addEventListener("touchstart", (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
